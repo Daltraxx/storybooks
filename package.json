@@ -1,0 +1,11 @@
+{
+  "name": "storybooks",
+  "version": "1.0.0",
+  "description": "App where users can post stories and view stories from other users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dalton Pettus",
+  "license": "MIT"
+}
