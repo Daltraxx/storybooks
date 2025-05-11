@@ -9,9 +9,8 @@ const connectDB = require('./config/db');
 // Load config
 dotenv.config({ path: './config/config.env' });
 
-connectDB();
-
 const app = express();
+connectDB();
 
 // Logging
 const devMode = process.env.NODE_ENV;
