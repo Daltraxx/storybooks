@@ -20,10 +20,12 @@ const configurePassport = (passport) => {
         }
 
         try {
-            let user = await User.findOne({ googleID: profile.id });
+            let user = await User.findOne({ googleId: profile.id });
             if (user) {
+                console.log('User found');
                 done(null, user);
             } else {
+                console.log('Creating User');
                 user = await User.create(newUser);
                 done(null, user);
             }
