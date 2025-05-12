@@ -18,6 +18,18 @@ const configurePassport = (passport) => {
             lastName: profile.name.familyName,
             image: profile.photos[0].value
         }
+
+        try {
+            let user = await User.findOne({ googleID: profile.id });
+            if (user) {
+                done(null, user);
+            } else {
+                user = await User.create(newUser);
+                done(null, user);
+            }
+        } catch (error) {
+            console.error(error);
+        }
         
     }
 
@@ -27,8 +39,13 @@ const configurePassport = (passport) => {
         done(null, user.id);
     });
       
-    passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => done(err, user));
+    passport.deserializeUser(async(id, done) => {
+        try {
+            const user = await User.findById(id);
+            done(null, user);
+        } catch (error) {
+            done(error, null)
+        }
     });
 }
 
