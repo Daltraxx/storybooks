@@ -1,14 +1,14 @@
 const ensureAuth = (req, res, next) => {
+    // if logged in, allow requested route, otherwise redirect to home page
     if (req.isAuthenticated()) {
         return next();
     } else {
-        // if not logged in, redirect to home page
         res.redirect('/');
     }
 }
 
 const ensureGuest = (req, res, next) => {
-    // dont show home/login page if already logged in
+    // if logged in, redirect to dashboard, otherwise allow requested route
     if (req.isAuthenticated()) {
         res.redirect('/dashboard');
     } else {
