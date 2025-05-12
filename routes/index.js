@@ -14,7 +14,11 @@ router.get('/', ensureGuest, (req, res) => {
 // @desc    Login/Landing page
 // @route   GET /
 router.get('/dashboard', ensureAuth, (req, res) => {
-    res.render('dashboard');
+    const sessionData = {
+        name: req.user.firstName
+    };
+    
+    res.render('dashboard', sessionData);
 })
 
 module.exports = router;
