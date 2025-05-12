@@ -29,14 +29,13 @@ app.set('view engine', '.hbs');
 app.set('views', './views');
 
 // Sessions
-app.use(
-    session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_CONNECTION_STRING })
-  })
-)
+const sessionOptions = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_CONNECTION_STRING })
+};
+app.use(session(sessionOptions));
 
 // Passport middleware
 app.use(passport.initialize());
