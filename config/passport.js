@@ -9,9 +9,19 @@ const configurePassport = (passport) => {
         callbackURL: '/auth/google/callback'
     };
 
-    passport.use(new GoogleStrategy(googleStrategyData, async(accessToken, refreshToken, profile, done) => {
-            console.log(profile);
-    }));
+    const googleStrategyVerifyCallback = async(accessToken, refreshToken, profile, done) => {
+        // console.log(profile);
+        const newUser = {
+            googleId: profile.id,
+            displayName: profile.displayName,
+            firstName: profile.name.givenName,
+            lastName: profile.name.familyName,
+            image: profile.photos[0].value
+        }
+        
+    }
+
+    passport.use(new GoogleStrategy(googleStrategyData, googleStrategyVerifyCallback));
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
