@@ -22,19 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.22.1/ckeditor.js" integrity="sha512-F8fV4+wpHYl9zul08Soff9H9fCx6OMIFfgbQcy+2v2gV7PdbT0OgM1LFwujQmwlLGWWKNbOFZ13uWP+Cbe0Ngw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    
-    <script>
-        {{!-- Materialize initializations --}}
-        M.Sidenav.init(document.querySelector('.sidenav'));
-        M.FormSelect.init(document.querySelector('#status'));
-
-        {{!-- Replace textarea with id='body' with ckeditor --}}
-        const textArea = document.querySelector('#story-body-editor');
-        if (textArea) {
-            CKEDITOR.replace(textArea, {
-                plugins: 'wysiwygarea, toolbar, basicstyles, link'
-            });
-        }
-    </script>
+    <script src="/js/initializeMaterializeComponents.js"></script>
+    <script src="/js/useCKEDITOR.js"></script>
 </body>
 </html>
