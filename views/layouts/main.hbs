@@ -28,7 +28,7 @@
         M.Sidenav.init(document.querySelector('.sidenav'));
         M.FormSelect.init(document.querySelector('#status'));
 
-        {{!-- Replace textarea with name='body' with ckeditor --}}
+        {{!-- Replace textarea with id='body' with ckeditor --}}
         CKEDITOR.replace('body', {
             plugins: 'wysiwygarea, toolbar, basicstyles, link'
         });
