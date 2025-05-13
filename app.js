@@ -27,13 +27,15 @@ const devMode = process.env.NODE_ENV;
 if (devMode === 'development') app.use(morgan('dev'));
 
 // Handlebars Helpers
-const { formatDate } = require('./helpers/hbs');
+const { formatDate, truncate, stripTags } = require('./helpers/hbs');
 
 // Handlebars
 const { engine } = require('express-handlebars');
 const engineOptions = { 
   helpers: {
-    formatDate
+    formatDate,
+    truncate,
+    stripTags
   },
   defaultLayout: 'main', 
   extname: '.hbs' 
