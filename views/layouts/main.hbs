@@ -29,10 +29,12 @@
         M.FormSelect.init(document.querySelector('#status'));
 
         {{!-- Replace textarea with id='body' with ckeditor --}}
-        CKEDITOR.replace('body', {
-            plugins: 'wysiwygarea, toolbar, basicstyles, link'
-        });
-        
+        const textArea = document.querySelector('#story-body-editor');
+        if (textArea) {
+            CKEDITOR.replace(textArea, {
+                plugins: 'wysiwygarea, toolbar, basicstyles, link'
+            });
+        }
     </script>
 </body>
 </html>
