@@ -93,7 +93,7 @@ router.get('/search/:query', ensureAuth, async (req, res) => {
             .sort({ createdAt: 'desc'})
             .lean();
         // console.log(stories);
-        res.render('stories/index', { stories });
+        res.render('stories/index', { stories, query });
     } catch(err){
         console.log(err);
         res.render('error/404');

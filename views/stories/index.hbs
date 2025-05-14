@@ -4,9 +4,9 @@
         <li>    
             <form id="search-form">
                 <div class="input-group">
-                        <i class="fas fa-search fa-large" ></i>
+                        <i class="fas fa-search fa-large"></i>
                         <div class="input-field">
-                        <input id="search-title" type="search" name='title' placeholder="Search by title">
+                        <input id="search-title" type="search" name='title' placeholder="Search by title" {{#if query}}value="{{query}}"{{/if}}>
                         <label class="label-icon" for="search">
                         </label>
                      </div>
