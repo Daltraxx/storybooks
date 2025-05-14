@@ -7,3 +7,7 @@ p {
     margin-top: 50px;
     text-align: center;
 }
+
+.card-content {
+    min-height: 16rem;
+}
