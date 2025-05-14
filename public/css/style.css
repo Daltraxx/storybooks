@@ -11,3 +11,7 @@ p {
 .card-content {
     min-height: 16rem;
 }
+
+.fa-small {
+    font-size: 16px !important;
+}
