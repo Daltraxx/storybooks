@@ -12,10 +12,8 @@
         <div class="row">
             <div class="input-field">
                 <select id="status" name="status">
-                    {{!-- {{#select story.status}} --}}
                     <option value="public" {{#if (isStatus story.status "public")}}selected{{/if}}>Public</option>
                     <option value="private" {{#if (isStatus story.status "private")}}selected{{/if}}>Private</option>
-                    {{!-- {{/select}} --}}
                 </select>
                 <label for="status">Status</label>
             </div>
