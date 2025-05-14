@@ -51,8 +51,13 @@ router.get('/:id', ensureAuth, async(req, res) => {
             console.log(`No story found with id ${id}`);
             return res.render('error/404');
         }
-        // Add logic for handling private stories (should only be viewable by story owner)
-        res.render('stories/view', { story });
+
+        if (story.status === 'private' && story.user != req.user.id) {
+            console.log('User cannot view another user\'s private story');
+            res.redirect('/stories');
+        } else {
+            res.render('stories/view', { story });
+        }
     } catch (error) {
         console.error(error);
         res.render('error/500');
