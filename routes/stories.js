@@ -63,4 +63,32 @@ router.get('/edit/:id', ensureAuth, async(req, res) => {
     }
 })
 
+// @desc    Update story
+// @route   PUT /stories/:id
+router.put('/:id', ensureAuth, async(req, res) => {
+    const id = req.params.id;
+    try {
+        const story = await Story.findById(id).lean();
+
+        if (!story) {
+            return res.render('error/404');
+        }
+
+        // Non-strict equal necessary since story.user is ObjectId
+        if (story.user != req.user.id) {
+            res.redirect('/stories');
+        } else {
+            const updateOptions = {
+                new: true,
+                runValidators: true
+            };
+            const updateStory = await Story.findOneAndUpdate({ _id: id }, req.body, updateOptions);
+            res.redirect('/dashboard');
+        }
+    } catch (error) {
+        console.error(error);
+        res.render('error/500');
+    }
+})
+
 module.exports = router;
