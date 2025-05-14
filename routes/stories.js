@@ -40,6 +40,25 @@ router.get('/', ensureAuth, async(req, res) => {
     }
 })
 
+// @desc    Show single story
+// @route   GET /stories/id
+router.get('/:id', ensureAuth, async(req, res) => {
+    const id = req.params.id;
+    try {
+        const story = await Story.findById(id).populate('user').lean();
+
+        if (!story) {
+            console.log(`No story found with id ${id}`);
+            return res.render('error/404');
+        }
+        // Add logic for handling private stories (should only be viewable by story owner)
+        res.render('stories/view', { story });
+    } catch (error) {
+        console.error(error);
+        res.render('error/500');
+    }
+})
+
 // @desc    Show edit page
 // @route   GET /stories/edit/:id
 router.get('/edit/:id', ensureAuth, async(req, res) => {
