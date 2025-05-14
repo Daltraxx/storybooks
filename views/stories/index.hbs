@@ -1,5 +1,22 @@
 <h1>Stories</h1>
 <section class="row">
+    <ul class="search-form col m12">
+        <li>    
+            <form id="search-form">
+                <div class="input-group">
+                        <i class="fas fa-search fa-large" ></i>
+                        <div class="input-field">
+                        <input id="search-title" type="search" name='title' placeholder="Search by title">
+                        <label class="label-icon" for="search">
+                        </label>
+                     </div>
+                    <button type="submit" class="input-group-addon btn">search</button>
+                </div>
+            </form>  
+        </li>   
+    </ul>
+</section>
+<section class="row">
     {{#each stories}}
         <div class="col s12 m4">
             <section class="card">

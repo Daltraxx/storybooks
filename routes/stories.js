@@ -83,6 +83,23 @@ router.get('/user/:userId', ensureAuth, async(req, res) => {
     }
 })
 
+//@desc Show story from search query
+//@route GET /stories/search/:query
+router.get('/search/:query', ensureAuth, async (req, res) => {
+    const query = req.params.query;
+    try{
+        const stories = await Story.find({title: new RegExp(query,'i'), status: 'public'})
+            .populate('user')
+            .sort({ createdAt: 'desc'})
+            .lean();
+        // console.log(stories);
+        res.render('stories/index', { stories });
+    } catch(err){
+        console.log(err);
+        res.render('error/404');
+    }
+})
+
 // @desc    Update story
 // @route   PUT /stories/:id
 router.put('/:id', ensureAuth, async(req, res) => {
