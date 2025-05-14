@@ -15,8 +15,8 @@ router.get('/add', ensureAuth, (req, res) => {
 router.post('/', ensureAuth, async(req, res) => {
     try {
         req.body.user = req.user.id;
-        // console.log(req.body);
         await Story.create(req.body);
+        console.log(`Created story with id ${req.body.user}`);
         res.redirect('/dashboard');
     } catch (error) {
         console.error(error);
@@ -76,6 +76,7 @@ router.put('/:id', ensureAuth, async(req, res) => {
 
         // Non-strict equal necessary since story.user is ObjectId
         if (story.user != req.user.id) {
+            console.log('User not story owner');
             res.redirect('/stories');
         } else {
             const updateOptions = {
@@ -83,6 +84,32 @@ router.put('/:id', ensureAuth, async(req, res) => {
                 runValidators: true
             };
             const updateStory = await Story.findOneAndUpdate({ _id: id }, req.body, updateOptions);
+            console.log(`Updated story with id ${id}`);
+            res.redirect('/dashboard');
+        }
+    } catch (error) {
+        console.error(error);
+        res.render('error/500');
+    }
+})
+
+// @desc    Delete story
+// @route   DELETE /stories/:id
+router.delete('/:id', ensureAuth, async(req, res) => {
+    const id = req.params.id;
+    try {
+        const story = await Story.findById(id).lean();
+
+        if (!story) {
+            return res.render('error/404');
+        }
+        
+        if (story.user != req.user.id) {
+            console.log('User not story owner');
+            res.redirect('/dashboard');
+        } else {
+            const deleteStory = await Story.deleteOne({ _id: id });
+            console.log(`Deleted story with id ${id}`);
             res.redirect('/dashboard');
         }
     } catch (error) {
