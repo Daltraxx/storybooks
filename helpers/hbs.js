@@ -26,9 +26,21 @@ const editIcon = (storyUser, loggedUser, storyId, floating = true) => {
   }
 }
 
+// const select = (selected, options) => {
+//   return options
+//       .fn(this)
+//       .replace(new RegExp(' value="' + selected + '"'), '$& selected="selected"')
+//       .replace(new RegExp('>' + selected + '</option>'), ' selected="selected"$&')
+// }
+
+const isStatus = (storyStatus, selectOptionValue) => {
+  return storyStatus === selectOptionValue;
+}
+
 module.exports = {
     formatDate,
     truncate,
     stripTags,
-    editIcon
+    editIcon,
+    isStatus
 }
