@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const methodOverride = require('method-override')
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -21,6 +22,17 @@ const app = express();
 // Body Parser middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Method override
+const methodOverrideCustomLogic = (req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    const method = req.body._method
+    delete req.body._method
+    return method
+  }
+}
+app.use(methodOverride(methodOverrideCustomLogic));
 
 // Logging
 const devMode = process.env.NODE_ENV;
