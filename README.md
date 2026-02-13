@@ -5,7 +5,7 @@ Storybooks is a webapp where users can sign in using their Google accounts, shar
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Express.js, Handlebars.js, MongoDB, Materialize
+**Tech used:** HTML, CSS, JavaScript, Express.js, Mongoose, Handlebars.js, MongoDB, Materialize
 
 This is a server-side rendered app with an MVC structure. It uses passport combined with the Google OAuth 2.0 API to allow users to sign in using their Google accounts. It also protects certain routes using authentication middleware, ensuring that only signed-in users have access to the relevant pages and redirects the user if this is not the case.
 
