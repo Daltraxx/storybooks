@@ -15,6 +15,19 @@ Views are dynamically rendered using express-handlebars, displaying stories that
 
 Users are also able to search for stories by their title. The request is handled by client-side JS in this case, though client-js is forgone in almost all other cases. For example, when it's necessary for a form to submit a PUT request, such as when editing an existing story, method overriding (using the method-override npm module) is used.
 
+## Screenshots:
+Login page:
+![Login page](./screenshots/login.jpg)
+
+Dashboard page:
+![Dashboard page](./screenshots/dashboard.jpg)
+
+Add story page:
+![Add story page](./screenshots/add-story.jpg)
+
+Story page:
+![Story page](./screenshots/stories.jpg)
+
 ## Optimizations
 
 Optimizations and updates to be factored in at a later time include more caching to limit requests sent, particularly for Google user information, and more client-side dom manipulation (likely through a framework such as React) to limit the necessary page reloads and requests sent.
