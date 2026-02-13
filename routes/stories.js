@@ -100,6 +100,29 @@ router.get('/search/:query', ensureAuth, async (req, res) => {
     }
 })
 
+// @desc    Show edit page
+// @route   GET /stories/edit/:id
+router.get('/edit/:id', ensureAuth, async(req, res) => {
+    const id = req.params.id;
+    try {
+        const story = await Story.findById(id).lean();
+
+        if (!story) {
+            return res.render('error/404');
+        }
+
+        if (story.user != req.user.id) {
+            console.log('User not story owner');
+            res.redirect('/stories');
+        } else {
+            res.render('stories/edit', { story });
+        }
+    } catch (error) {
+        console.error(error);
+        res.render('error/500');
+    }
+})
+
 // @desc    Update story
 // @route   PUT /stories/:id
 router.put('/:id', ensureAuth, async(req, res) => {
