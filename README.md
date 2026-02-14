@@ -1,5 +1,7 @@
 # Storybooks
+
 Storybooks is a webapp where users can sign in using their Google accounts, share stories, and view stories shared by other users.
+
 <!-- add screenshots -->
 <!-- **Link to project:** Looking for affordable/free hosting service -->
 
@@ -16,16 +18,21 @@ Views are dynamically rendered using express-handlebars, displaying stories that
 Users are also able to search for stories by their title. The request is handled by client-side JS in this case, though client-js is forgone in almost all other cases. For example, when it's necessary for a form to submit a PUT request, such as when editing an existing story, method overriding (using the method-override npm module) is used.
 
 ## Screenshots:
-Login page:
+
+### Login page:
+
 ![Login page](./screenshots/login.jpg)
 
-Dashboard page:
+### Dashboard page:
+
 ![Dashboard page](./screenshots/dashboard.jpg)
 
-Add story page:
+### Add story page:
+
 ![Add story page](./screenshots/add-story.jpg)
 
-Story page:
+### Story page:
+
 ![Story page](./screenshots/stories.jpg)
 
 ## Optimizations
